@@ -7,6 +7,8 @@ library(readxl)
 library(ggpubr) # if don't have -> install.packages('ggpubr')
 
 df1 = read_excel('U2OS_9_timepoint.xlsx')
+df1$Treatment = factor(df1$Treatment)
+df1$Time = factor(df1$Time)
 
 my_comparisons <- list(c("Control", "MPA"), c("Control", "MPA_G"))
 
