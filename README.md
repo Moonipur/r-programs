@@ -55,6 +55,12 @@ df_surgeries <- data.frame(
   Time = c(10, 10, 650)
 )
 
+df_blood <- data.frame(
+  ID = factor(c("003", "004", "004", "009", "022")),
+  Time = c(10, 15, 660, 800, 1300)          
+)
+
+# --- 2. PLOT ---
 ggplot() +
   # Layer 1: Light gray background bars for total survival
   geom_rect(data = df_main, aes(xmin = 0, xmax = End, 
@@ -81,6 +87,12 @@ ggplot() +
                                    y = as.numeric(ID)-0.4, yend = as.numeric(ID)+0.4,
                                    color = Status), size = 3) +
   
+  geom_segment(data = df_blood, 
+               aes(x = Time, xend = Time, 
+                   y = as.numeric(ID) + 0.6, yend = as.numeric(ID) + 0.45),
+               arrow = arrow(length = unit(0.2, "cm")), 
+               color='red', type = "closed", size = 1) +
+  
   # Styling
   scale_y_continuous(breaks = 1:length(levels(df_main$ID)), labels = levels(df_main$ID)) +
   scale_color_manual(values = c("Chemotherapy" = "#ff7f0e", "PARPi" = "#2ca02c", "Bevacizumab" = "purple"), name = "Therapy") +
@@ -97,5 +109,4 @@ ggplot() +
   
   theme_minimal() +
   labs(x = "Time from diagnosis (days)", y = "Patient ID")
-
 ```
