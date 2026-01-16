@@ -2,6 +2,12 @@
 
 ### Visualize 1 (column plot)
 ```
+library(tidyverse)
+library(readxl)
+library(ggpubr) # if don't have -> install.packages('ggpubr')
+
+df1 = read_excel('U2OS_9_timepoint.xlsx')
+
 my_comparisons <- list(c("Control", "MPA"), c("Control", "MPA_G"))
 
 df1 %>% ggbarplot( 
